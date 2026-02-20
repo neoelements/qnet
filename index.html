@@ -2,63 +2,207 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>QNET</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" type="image/svg+xml" sizes="any" href="assets/favicon.svg">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <title>QNET | Queen's Nuclear Engineering Team</title>
     <style>
+        /* 1. Reset & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
         body {
+            overflow: hidden; 
+            background-color: #1a1a1a; /* Lighter, charcoal dark mode base */
+            color: #f0f0f0; 
+        }
+
+        /* 2. Fixed Header & Logo */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+            pointer-events: none; 
+        }
+
+        .logo-link {
+            pointer-events: auto; 
+            text-decoration: none;
+        }
+
+        .logo-img {
+    height: 90px; /* Forces the SVG to a specific height */
+    width: auto;
+    display: block; /* Prevents weird inline-spacing bugs */
+    filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.3)); 
+}
+
+        /* 3. The Horizontal Slideshow Container */
+        .slideshow-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            overflow-x: auto; 
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+        }
+
+        .slideshow-container::-webkit-scrollbar { display: none; }
+        .slideshow-container { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* 4. The Individual Slides */
+        .slide {
+            flex: 0 0 100vw;
+            height: 100vh;
+            scroll-snap-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: #111;
-            color: white;
             text-align: center;
-            /* Prevents horizontal scroll on small screens */
-            overflow-x: hidden; 
+            padding: 2rem;
         }
 
-        /* Updated Image Styles */
-        .logo {
-            width: 100%;
-            max-width: 1000px; /* Caps the size on large screens */
-            padding: 0 20px;   /* Gives it breathing room on mobile */
-            box-sizing: border-box;
-            margin-bottom: 30px;
-        }
+        /* Elevated dark mode background shifts */
+        .slide-1 { background-color: #1e1e1e; }
+        .slide-2 { background-color: #242424; }
+        .slide-3 { background-color: #2a2a2a; }
 
+        /* 5. Typography */
         h1 {
+            font-size: 4.5rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: #a0a0a0; /* Slightly lighter gray to match the new background */
+            max-width: 600px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        /* 6. Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
             font-weight: 500;
-            margin: 0;
-            line-height: 1.4; /* Slight tweak for better readability */
-        }
-
-        a {
-            color: #4da6ff;
+            color: #f0f0f0;
             text-decoration: none;
-            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: transparent;
+            border: 1px solid #555; 
+            border-radius: 50px; 
+            transition: all 0.3s ease;
         }
 
-        a:hover {
-            text-decoration: underline;
+        /* EXACT Hover states: Blue -> Gold -> Red */
+        .slide-1 .btn:hover {
+            border-color: #002552; 
+            background-color: rgba(0, 37, 82, 0.4); 
+            color: #ffffff;
+        }
+
+        .slide-2 .btn:hover {
+            border-color: #fabc0f; 
+            background-color: rgba(250, 188, 15, 0.2); 
+            color: #fabc0f; 
+        }
+
+        .slide-3 .btn:hover {
+            border-color: #b90e32; 
+            background-color: rgba(185, 14, 50, 0.2);
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
 
-    <img src="assets/Full Logo.png" alt="QNET Logo" class="logo" style="max-width: 500px;">
+<header class="site-header">
+    <a href="index.html" class="logo-link">
+        <img src="assets/White NET Full Logo.svg" alt="QNET Logo" class="logo-img">
+    </a>
+</header>
 
-    <h1>
-        QNET: Coming soon. <br><br>
-        <a href="mailto:ryan@queensnuclear.ca">Interested?</a>
-    </h1>
+<div class="slideshow-container">
+    
+    <section class="slide slide-1">
+        <h1>Queen's Nuclear Engineering Team</h1>
+        <p>Coming September 2026.</p>
+        <a href="https://forms.gle/KVNfwLB1Kj7JSAoZ9" target="_blank" class="btn">Express Interest</a>
+    </section>
+
+    <section class="slide slide-2">
+        <h1>About Us</h1>
+        <p>Designing the future of complex nuclear logistics and engineering systems.</p>
+        <a href="about.html" class="btn">Read Our Story</a>
+    </section>
+
+    <section class="slide slide-3">
+        <h1>Meet the Team</h1>
+        <p>The minds behind the machines.</p>
+        <a href="team.html" class="btn">View Roster</a>
+    </section>
+
+</div>
+
+<script>
+    // --- RANDOM CURSOR INJECTION ---
+    (function setRandomCursor() {
+        // Exact Queen's colors with the '#' URL-encoded as '%23' for the SVG
+        const queensColors = ['%23002552', '%23fabc0f', '%23b90e32'];
+        // Pick a random color
+        const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
+
+        // Create a style block to inject the custom cursor
+        const cursorStyle = document.createElement('style');
+        cursorStyle.innerHTML = `
+            * {
+                cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${randomColor}"/></svg>') 6 6, auto;
+            }
+            a, button, .btn, .logo-link {
+                cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important;
+            }
+        `;
+        document.head.appendChild(cursorStyle);
+    })();
+
+    // --- HORIZONTAL SCROLL LOGIC ---
+    const container = document.querySelector('.slideshow-container');
+    let isScrolling = false;
+
+    container.addEventListener('wheel', (evt) => {
+        evt.preventDefault();
+        
+        if (isScrolling) return; 
+        isScrolling = true;
+
+        const slideWidth = window.innerWidth;
+        const direction = evt.deltaY > 0 ? 1 : -1;
+        
+        container.scrollBy({ 
+            left: direction * slideWidth, 
+            behavior: 'smooth' 
+        });
+
+        setTimeout(() => {
+            isScrolling = false;
+        }, 700); 
+    }, { passive: false });
+</script>
 
 </body>
 </html>
