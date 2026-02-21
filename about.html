@@ -26,26 +26,19 @@
             color: #f0f0f0; 
         }
 
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 1.5rem; /* Reduced padding for mobile */
-    display: flex;
-    justify-content: center;
-    z-index: 100;
-    background-color: transparent;
-    backdrop-filter: blur(10px); /* Glass effect */
-    pointer-events: none;
-}
-
-/* Shrink the logo on mobile so it doesn't eat the whole screen */
-@media (max-width: 768px) {
-    .logo-img {
-        height: 60px; 
-    }
-}
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+            background-color: transparent;
+            backdrop-filter: blur(10px); 
+            pointer-events: none;
+        }
 
         .logo-link {
             pointer-events: auto; 
@@ -57,6 +50,7 @@
             width: auto;
             display: block; 
             filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.3)); 
+            transition: height 0.3s ease;
         }
 
         /* 3. The Horizontal Slideshow Container */
@@ -64,37 +58,56 @@
             display: flex;
             width: 100vw;
             height: 100vh;
-            overflow-x: auto; 
+            overflow-x: scroll; 
             overflow-y: hidden;
-            scroll-snap-type: x mandatory;
+            scroll-snap-type: x mandatory; 
+            -webkit-overflow-scrolling: touch; 
+            scroll-behavior: smooth;
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
         }
 
         .slideshow-container::-webkit-scrollbar { display: none; }
-        .slideshow-container { -ms-overflow-style: none; scrollbar-width: none; }
 
         /* 4. The Individual Slides */
         .slide {
             flex: 0 0 100vw;
-            height: 100vh;
-            scroll-snap-align: center;
+            width: 100vw;
+            height: 100svh;
+            scroll-snap-align: start; 
+            scroll-snap-stop: always; 
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: center; 
             align-items: center;
             text-align: center;
-            padding: 2rem;
+            padding: 0 2rem;
         }
 
-        .slide-1 { background-color: #1e1e1e; }
-        .slide-2 { background-color: #242424; }
-
-        h1 {
+        .slide h1 {
+            margin-top: 120px; /* Safe zone for the logo */
             font-size: 4.5rem;
             font-weight: 400;
             letter-spacing: -0.03em;
             margin-bottom: 0.5rem;
             color: #ffffff;
         }
+
+        @media (max-width: 768px) {
+            .site-header { padding: 1.5rem; }
+            .logo-img { height: 65px; }
+            .slide h1 {
+                margin-top: 100px;
+                font-size: 2.8rem;
+            }
+            p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+        .slide-1 { background-color: #1e1e1e; }
+        .slide-2 { background-color: #242424; }
 
         p {
             font-size: 1.25rem;
@@ -105,7 +118,6 @@
             margin-bottom: 2.5rem;
         }
 
-        /* Buttons updated for animated arrow */
         .btn {
             display: inline-flex; 
             align-items: center;
@@ -139,15 +151,14 @@
             50% { transform: translateX(8px); }
         }
 
-        /* Hover states for the two slides */
         .slide-1 .btn:hover {
-            border-color: #fabc0f; /* Queen's Gold */
+            border-color: #fabc0f; 
             background-color: rgba(250, 188, 15, 0.2); 
             color: #fabc0f; 
         }
 
         .slide-2 .btn:hover {
-            border-color: #002552; /* Queen's Blue */
+            border-color: #002552; 
             background-color: rgba(0, 37, 82, 0.4); 
             color: #ffffff; 
         }
@@ -181,63 +192,36 @@
 </div>
 
 <script>
-    // --- RANDOM CURSOR INJECTION ---
     (function setRandomCursor() {
         const queensColors = ['%23002552', '%23fabc0f', '%23b90e32'];
         const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
         const cursorStyle = document.createElement('style');
         cursorStyle.innerHTML = `
-            * {
-                cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${randomColor}"/></svg>') 6 6, auto;
-            }
-            a, button, .btn, .logo-link {
-                cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important;
-            }
+            * { cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${randomColor}"/></svg>') 6 6, auto; }
+            a, button, .btn, .logo-link { cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important; }
         `;
         document.head.appendChild(cursorStyle);
     })();
 
-    // --- HORIZONTAL SCROLL LOGIC ---
     const container = document.querySelector('.slideshow-container');
     let isScrolling = false;
 
-    // 1. Mouse Wheel Scrolling
     container.addEventListener('wheel', (evt) => {
         evt.preventDefault();
-        
         if (isScrolling) return; 
         isScrolling = true;
-
         const slideWidth = window.innerWidth;
         const direction = evt.deltaY > 0 ? 1 : -1;
-        
-        container.scrollBy({ 
-            left: direction * slideWidth, 
-            behavior: 'smooth' 
-        });
-
-        setTimeout(() => {
-            isScrolling = false;
-        }, 700); 
+        container.scrollBy({ left: direction * slideWidth, behavior: 'smooth' });
+        setTimeout(() => { isScrolling = false; }, 700); 
     }, { passive: false });
 
-    // 2. Button Click Scrolling
     document.getElementById('next-slide-btn').addEventListener('click', (evt) => {
         evt.preventDefault(); 
-        
         if (isScrolling) return; 
         isScrolling = true;
-
-        const slideWidth = window.innerWidth;
-        
-        container.scrollBy({ 
-            left: slideWidth, 
-            behavior: 'smooth' 
-        });
-
-        setTimeout(() => {
-            isScrolling = false;
-        }, 700); 
+        container.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+        setTimeout(() => { isScrolling = false; }, 700); 
     });
 </script>
 
