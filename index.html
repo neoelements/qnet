@@ -60,16 +60,16 @@
     display: flex;
     width: 100vw;
     height: 100vh;
-    overflow-x: auto; 
+    overflow-x: scroll; /* Changed from auto to scroll to force the interaction */
     overflow-y: hidden;
     
-    /* Forces the snapping behavior */
     scroll-snap-type: x mandatory; 
-    
-    /* Critical for iOS/Instagram browser snapping */
     -webkit-overflow-scrolling: touch; 
     
-    /* Hide scrollbars */
+    /* These ensure the container doesn't 'leak' width */
+    scroll-behavior: smooth;
+    position: relative;
+    
     -ms-overflow-style: none; 
     scrollbar-width: none; 
 }
@@ -78,16 +78,22 @@
         .slideshow-container { -ms-overflow-style: none; scrollbar-width: none; }
 
         /* 4. The Individual Slides */
-        .slide {
-            flex: 0 0 100vw;
-            height: 100svh; /* Small viewport height for mobile browser bars */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center;
-            text-align: center;
-            padding: 0 2rem;
-        }
+ .slide {
+    flex: 0 0 100vw;
+    width: 100vw; /* Explicitly lock the width */
+    height: 100svh;
+    
+    /* This is the missing piece for mobile snapping */
+    scroll-snap-align: start; 
+    scroll-snap-stop: always; 
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+    padding: 0 2rem;
+}
 
         /* Push the H1 down so it never overlaps the fixed logo */
         .slide h1 {
