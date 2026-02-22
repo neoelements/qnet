@@ -36,24 +36,51 @@
         }
 
         /* 2. Fixed Header & Logo */
-        .site-header {
+ .site-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 2.5rem;
+            padding: 1.5rem 2.5rem;
             display: flex;
-            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
             z-index: 100;
-            background-color: transparent; 
-            backdrop-filter: blur(10px); 
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+            pointer-events: none; /* Lets you click the background through the header */
+        }
+
+        .header-side {
+            flex: 1;
+            display: flex;
             pointer-events: none;
         }
 
-        .logo-link {
-            pointer-events: auto; 
+        /* Desktop Spacing */
+        .header-side.left { justify-content: flex-end; padding-right: 8rem; }
+        .header-side.right { justify-content: flex-start; padding-left: 8rem; }
+
+        .nav-link {
+            pointer-events: auto;
             text-decoration: none;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: color 0.3s ease;
         }
+
+        /* Changes to white on hover */
+        .nav-link:hover { color: #ffffff; }
+
+        .logo-container {
+            flex: 0 0 auto;
+            pointer-events: auto;
+        }
+
+        .logo-link { text-decoration: none; }
 
         .logo-img {
             height: 90px; 
@@ -63,6 +90,23 @@
             transition: height 0.3s ease;
         }
 
+        /* --- ELEGANT MOBILE NAV --- */
+        @media (max-width: 768px) {
+            .site-header {
+                padding: 1rem 1.5rem;
+            }
+            /* Pushes links to the far edges of the screen */
+            .header-side.left { padding-right: 0; justify-content: flex-start; }
+            .header-side.right { padding-left: 0; justify-content: flex-end; }
+            
+            .nav-link {
+                font-size: 0.75rem; 
+                letter-spacing: 0.1em;
+            }
+            .logo-img {
+                height: 55px; /* Shrinks logo to balance the row */
+            }
+        }
         /* 3. The Horizontal Slideshow Container */
 /* 3. The Horizontal Slideshow Container */
 .slideshow-container {
@@ -102,6 +146,7 @@
     align-items: center;
     text-align: center;
     padding: 0 2rem;
+    position: relative;
 }
 
         /* Push the H1 down so it never overlaps the fixed logo */
@@ -240,14 +285,57 @@
             }
         }
 
+        /* --- MOBILE SWIPE INDICATOR --- */
+        .mobile-swipe-indicator {
+            display: none; /* Hidden on desktop */
+            position: absolute;
+            bottom: 3.5rem; /* Sits above the browser controls */
+            left: 50%;
+            transform: translateX(-50%);
+            color: #888;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            pointer-events: none;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .mobile-swipe-indicator span {
+            font-size: 1.2rem;
+            animation: swipePulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes swipePulse {
+            0%, 100% { transform: translateX(0); opacity: 0.5; }
+            50% { transform: translateX(8px); opacity: 1; }
+        }
+
+        /* Show only on mobile screens */
+        @media (max-width: 768px) {
+            .mobile-swipe-indicator {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
 
 <header class="site-header">
-    <a href="/" class="logo-link">
-        <img src="assets/QNET outline white.svg" alt="QNET Logo" class="logo-img">
-    </a>
+    <div class="header-side left">
+        <a href="/about" class="nav-link">About</a>
+    </div>
+    
+    <div class="logo-container">
+        <a href="/" class="logo-link">
+            <img src="assets/QNET outline white.svg" alt="QNET Logo" class="logo-img">
+        </a>
+    </div>
+
+    <div class="header-side right">
+        <a href="/join" class="nav-link">Join</a>
+    </div>
 </header>
 
 <div class="slideshow-container">
@@ -259,6 +347,7 @@
             practical engineering logistics. We aim to launch in Fall 2026, and are currently in the process of recruiting our founding members. Help us build the future of nuclear engineering at Queen's.
         </p>
         <a href="#" id="next-slide-btn" class="btn">Get involved today <span class="arrow">→</span></a>
+        <div class="mobile-swipe-indicator">Swipe <span>→</span></div>
     </section>
 
     <section class="slide slide-2">
