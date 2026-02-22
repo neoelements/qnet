@@ -125,9 +125,20 @@
             .grid-4 { grid-template-columns: repeat(2, 1fr); max-width: 900px; } 
         }
 
+        /* MOBILE FIXES */
         @media (max-width: 900px) {
+            .vertical-slideshow {
+                scroll-snap-type: none; /* Disable aggressive snapping on mobile */
+            }
             .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
-            .slide { padding-top: 120px; height: auto; min-height: 100vh; justify-content: flex-start; }
+            .slide { 
+                padding-top: 120px; 
+                padding-bottom: 120px; /* Gives room for the fixed footer/buttons */
+                height: auto; 
+                min-height: 100vh; 
+                justify-content: flex-start; 
+                scroll-snap-align: none; /* Removes snap points */
+            }
             h1 { font-size: 2.8rem; }
         }
 
@@ -168,28 +179,24 @@
 
         /* --- SPECIFIC HOVER GLOWS --- */
         
-        /* Engineering (Queen's Blue with boosted shadow spread & opacity) */
         .eng-card:hover {
             border-color: #002552; 
             box-shadow: 0 15px 40px rgba(0, 37, 82, 0.9), 0 0 20px rgba(0, 37, 82, 0.7);
             transform: translateY(-5px);
         }
 
-        /* Research (Queen's Gold) */
         .res-card:hover {
             border-color: #fabc0f; 
             box-shadow: 0 10px 30px rgba(250, 188, 15, 0.2);
             transform: translateY(-5px);
         }
 
-        /* Operations (Queen's Red) */
         .ops-card:hover {
             border-color: #b90e32; 
             box-shadow: 0 10px 30px rgba(185, 14, 50, 0.25);
             transform: translateY(-5px);
         }
 
-        /* Waitlist Cards */
         .waitlist-card:hover {
             border-color: #666;
             box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
@@ -206,6 +213,10 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             animation: bounce 2s infinite;
+        }
+
+        @media (max-width: 900px) {
+            .scroll-indicator { display: none; } /* Hide on mobile so it doesn't overlap text */
         }
 
         @keyframes bounce {
@@ -563,12 +574,11 @@
     const form = document.getElementById('application-form');
     const successMessage = document.getElementById('success-message');
 
-    // Back to top functionality mapped to the specific scrolling container
+    // Back to top functionality
     const backToTopBtn = document.getElementById('back-to-top');
     const slideshowContainer = document.querySelector('.vertical-slideshow');
 
     slideshowContainer.addEventListener('scroll', () => {
-        // Show button after scrolling down 50% of the viewport height
         if (slideshowContainer.scrollTop > window.innerHeight * 0.5) {
             backToTopBtn.classList.add('show');
         } else {
