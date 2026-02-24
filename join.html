@@ -386,18 +386,18 @@
 
 <header class="site-header">
     <div class="header-side left">
-        <a href="/about" class="nav-link">About</a>
-        <a href="/teams" class="nav-link">Teams</a>
+        <a href="/about" class="nav-link" onclick="gtag('event', 'button_click', {'button_name': 'Header - About'});">About</a>
+        <a href="/teams" class="nav-link" onclick="gtag('event', 'button_click', {'button_name': 'Header - Teams'});">Teams</a>
     </div>
     
     <div class="logo-container">
-        <a href="/" class="logo-link">
+        <a href="/" class="logo-link" onclick="gtag('event', 'button_click', {'button_name': 'Header - Logo'});">
             <img src="assets/QNET outline white.svg" alt="QNET Logo" class="logo-img">
         </a>
     </div>
 
     <div class="header-side right">
-        <a href="/join" class="nav-link">Join</a>
+        <a href="/join" class="nav-link" onclick="gtag('event', 'button_click', {'button_name': 'Header - Join'});">Join</a>
     </div>
 </header>
 
@@ -422,7 +422,7 @@
         
         <div class="roster-grid grid-3">
             
-            <div class="role-card stem-card" data-role="STEM Lead">
+            <div class="role-card stem-card" data-role="STEM Lead" onclick="gtag('event', 'button_click', {'button_name': 'Role Card - STEM Lead'});">
                 <span class="role-tag tag-lead">Founding Team</span>
                 <h3>STEM Leads</h3>
                 <p class="role-intro">As a STEM lead, you will guide the technical execution or scientific direction of QNET. You are expected to oversee:</p>
@@ -434,7 +434,7 @@
                 </ul>
             </div>
 
-            <div class="role-card ops-card" data-role="Operations Lead">
+            <div class="role-card ops-card" data-role="Operations Lead" onclick="gtag('event', 'button_click', {'button_name': 'Role Card - Ops Lead'});">
                 <span class="role-tag tag-lead">Founding Team</span>
                 <h3>Operations Leads</h3>
                 <p class="role-intro">As an Operations lead, you will secure the funding runway and build the public presence of the team. You are expected to oversee:</p>
@@ -446,7 +446,7 @@
                 </ul>
             </div>
 
-            <div class="role-card gen-card" data-role="General Member">
+            <div class="role-card gen-card" data-role="General Member" onclick="gtag('event', 'button_click', {'button_name': 'Role Card - General Member'});">
                 <span class="role-tag tag-waitlist">Waitlist</span>
                 <h3>General Member</h3>
                 <p class="role-intro">Not looking for a foundational executive role? Join the technical or operational roster.</p>
@@ -459,18 +459,18 @@
 </main>
 
 <footer class="site-footer">
-    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link">
+    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - LinkedIn'});">
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
     </a>
-    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link">
+    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - Instagram'});">
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </a>
-    <a href="https://github.com/qnuclear" target="_blank" class="social-link">
+    <a href="https://github.com/qnuclear" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - GitHub'});">
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
     </a>
 </footer>
 
-<button id="back-to-top" aria-label="Back to Top">
+<button id="back-to-top" aria-label="Back to Top" onclick="gtag('event', 'button_click', {'button_name': 'Back to Top'});">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 19V5M5 12l7-7 7 7"/>
     </svg>
@@ -478,7 +478,7 @@
 
 <div class="modal-overlay" id="apply-modal">
     <div class="modal-content">
-        <span class="close-btn" id="close-modal">&times;</span>
+        <span class="close-btn" id="close-modal" onclick="gtag('event', 'button_click', {'button_name': 'Modal - Close'});">&times;</span>
         <form id="application-form">
             <input type="hidden" name="access_key" value="7ed0b3b0-b8ea-4d3f-bd16-012b3028b8d0">
             <input type="hidden" id="selected-role" name="Applied Role" value="">
@@ -552,7 +552,7 @@
                 <input type="text" id="other-discipline-input" name="Other Discipline" class="form-control" placeholder="What are you studying?">
             </div>
 
-            <button type="submit" class="submit-btn">Submit Application</button>
+            <button type="submit" class="submit-btn" onclick="gtag('event', 'button_click', {'button_name': 'Form - Submit Application Click'});">Submit Application</button>
         </form>
 
         <div id="success-message">
