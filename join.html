@@ -35,7 +35,7 @@
             overflow: hidden; 
         }
 
- .site-header {
+        .site-header {
             position: fixed;
             top: 0;
             left: 0;
@@ -47,16 +47,16 @@
             z-index: 100;
             background-color: transparent;
             backdrop-filter: blur(10px);
-            pointer-events: none; /* Lets you click the background through the header */
-        }
-
-        .header-side {
-            flex: 1;
-            display: flex;
             pointer-events: none;
         }
 
-        /* Desktop Spacing */
+       .header-side { 
+            flex: 1; 
+            display: flex; 
+            align-items: center;
+            pointer-events: none; 
+            gap: 2.5rem; /* This is the new part that spaces the links */
+        }
         .header-side.left { justify-content: flex-end; padding-right: 8rem; }
         .header-side.right { justify-content: flex-start; padding-left: 8rem; }
 
@@ -71,14 +71,8 @@
             transition: color 0.3s ease;
         }
 
-        /* Changes to white on hover */
         .nav-link:hover { color: #ffffff; }
-
-        .logo-container {
-            flex: 0 0 auto;
-            pointer-events: auto;
-        }
-
+        .logo-container { flex: 0 0 auto; pointer-events: auto; }
         .logo-link { text-decoration: none; }
 
         .logo-img {
@@ -89,24 +83,14 @@
             transition: height 0.3s ease;
         }
 
-        /* --- ELEGANT MOBILE NAV --- */
         @media (max-width: 768px) {
-            .site-header {
-                padding: 1rem 1.5rem;
-            }
-            /* Pushes links to the far edges of the screen */
+            .site-header { padding: 1rem 1.5rem; }
             .header-side.left { padding-right: 0; justify-content: flex-start; }
             .header-side.right { padding-left: 0; justify-content: flex-end; }
-            
-            .nav-link {
-                font-size: 0.75rem; 
-                letter-spacing: 0.1em;
-            }
-            .logo-img {
-                height: 55px; /* Shrinks logo to balance the row */
-            }
+            .header-side { gap: 1.25rem; } /* Reduces gap between links on mobile */
+            .nav-link { font-size: 0.75rem; letter-spacing: 0.1em; }
+            .logo-img { height: 55px; }
         }
-
 
         /* --- VERTICAL SLIDESHOW CONTAINER --- */
         .vertical-slideshow {
@@ -126,7 +110,7 @@
             min-height: 100vh;
             width: 100vw;
             scroll-snap-align: start;
-            scroll-snap-stop: always; /* Strict snap for desktop */
+            scroll-snap-stop: always;
             display: flex;
             flex-direction: column;
             justify-content: center; 
@@ -157,6 +141,11 @@
         }
 
         .hiring-notice {
+            font-size: 1rem;
+            max-width: 650px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 3rem;
             color: #fabc0f;
             font-weight: 500;
             margin-top: 1rem;
@@ -169,28 +158,19 @@
             width: 100%;
         }
 
-        .grid-4 { grid-template-columns: repeat(4, 1fr); max-width: 1400px; }
-        .grid-3 { grid-template-columns: repeat(3, 1fr); max-width: 1100px; }
-        .grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 800px; }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); max-width: 1200px; }
 
-        @media (max-width: 1200px) {
-            .grid-4 { grid-template-columns: repeat(2, 1fr); max-width: 900px; } 
-        }
-
-        /* --- MOBILE FIXES FOR SCROLL SNAPPING --- */
         @media (max-width: 900px) {
-            .vertical-slideshow {
-                scroll-snap-type: y proximity; /* Gentle snap prevents aggressive jumping */
-            }
-            .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+            .vertical-slideshow { scroll-snap-type: y proximity; }
+            .grid-3 { grid-template-columns: 1fr; }
             .slide { 
                 padding-top: 120px; 
-                padding-bottom: 140px; /* Extra room so footer doesn't cover last card */
+                padding-bottom: 140px; 
                 height: auto; 
                 min-height: 100vh; 
                 justify-content: flex-start; 
                 scroll-snap-align: start; 
-                scroll-snap-stop: normal; /* Disables the strict stopping on tall mobile screens */
+                scroll-snap-stop: normal; 
             }
             h1 { font-size: 2.8rem; }
         }
@@ -199,13 +179,14 @@
             background-color: #2a2a2a; 
             border: 1px solid #333;
             border-radius: 12px;
-            padding: 2rem 1.5rem;
+            padding: 2.5rem 2rem;
             text-align: left;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .role-tag {
@@ -217,42 +198,42 @@
         }
 
         /* Dynamic Tag Colors */
-        .eng-card .tag-lead { color: #002552; } 
-        .res-card .tag-lead { color: #fabc0f; }
-        .ops-card .tag-lead { color: #b90e32; }
-        .tag-waitlist { color: #a0a0a0; font-weight: 500; }
+        .stem-card .tag-lead { color: #002552; } 
+        .ops-card .tag-lead { color: #fabc0f; }
+        .gen-card .tag-waitlist { color: #b90e32; }
         
-        .role-card h3 { color: #ffffff; font-size: 1.4rem; font-weight: 400; margin-bottom: 0.75rem; }
+        .role-card h3 { color: #ffffff; font-size: 1.6rem; font-weight: 400; margin-bottom: 0.75rem; }
+        .role-intro { font-size: 0.95rem; color: #e0e0e0; line-height: 1.5; margin-bottom: 1rem; font-style: italic; }
         
-        .role-intro { font-size: 0.95rem; color: #e0e0e0; line-height: 1.5; margin-bottom: 0.75rem; font-style: italic; }
-        
-        .role-card p, .role-card ul { font-size: 0.95rem; color: #ccc; line-height: 1.5; margin-bottom: 0; flex-grow: 1; }
-        .role-card ul { padding-left: 1.2rem; }
-        .role-card li { margin-bottom: 0.3rem; }
+        /* SPACING FIX: Removed flex-grow: 1 from standard paragraphs */
+        .role-card p, .role-card ul { font-size: 0.95rem; color: #ccc; line-height: 1.5; margin-bottom: 0; }
+        .role-card ul { flex-grow: 1; padding-left: 1.2rem; } /* Only bullet points stretch to fill space */
+        .role-card li { margin-bottom: 0.4rem; }
+
+        /* General Member Text Pinning */
+        @media (min-width: 901px) {
+            .bottom-text { margin-top: auto; } /* Pins exact element to bottom on desktop */
+        }
+        @media (max-width: 900px) {
+            .bottom-text { margin-top: 1.5rem; } /* Natural gap on mobile */
+        }
 
         /* --- SPECIFIC HOVER GLOWS --- */
-        
-        .eng-card:hover {
+        .stem-card:hover {
             border-color: #002552; 
             box-shadow: 0 15px 40px rgba(0, 37, 82, 0.9), 0 0 20px rgba(0, 37, 82, 0.7);
             transform: translateY(-5px);
         }
 
-        .res-card:hover {
+        .ops-card:hover {
             border-color: #fabc0f; 
             box-shadow: 0 10px 30px rgba(250, 188, 15, 0.2);
             transform: translateY(-5px);
         }
 
-        .ops-card:hover {
+        .gen-card:hover {
             border-color: #b90e32; 
             box-shadow: 0 10px 30px rgba(185, 14, 50, 0.25);
-            transform: translateY(-5px);
-        }
-
-        .waitlist-card:hover {
-            border-color: #666;
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
             transform: translateY(-5px);
         }
 
@@ -266,11 +247,13 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 10;
         }
 
-        @media (max-width: 900px) {
-            .scroll-indicator { display: none; } 
-        }
+        .scroll-indicator:hover { color: #fff; }
+
+        @media (max-width: 900px) { .scroll-indicator { display: none; } }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
@@ -370,24 +353,33 @@
         }
 
         #back-to-top svg { width: 24px; height: 24px; }
-
-        #back-to-top.show {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
-        }
-
-        #back-to-top:hover {
-            border-color: #fabc0f;
-            color: #fabc0f;
-            box-shadow: 0 0 15px rgba(250, 188, 15, 0.2);
-            transform: translateY(-3px);
-        }
+        #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; transform: translateY(-3px); }
 
         @media (max-width: 768px) {
             .site-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
             #back-to-top { bottom: 1.5rem; right: 1.5rem; width: 45px; height: 45px; }
         }
+
+        .update-notice {
+            background: rgba(250, 188, 15, 0.05);
+            border: 1px solid rgba(250, 188, 15, 0.2);
+            border-left: 4px solid #fabc0f;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            max-width: 650px;
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-top: -1rem;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .update-notice strong {
+            color: #fabc0f;
+            font-weight: 600;
+        }
+        
     </style>
 </head>
 <body>
@@ -395,6 +387,7 @@
 <header class="site-header">
     <div class="header-side left">
         <a href="/about" class="nav-link">About</a>
+        <a href="/teams" class="nav-link">Teams</a>
     </div>
     
     <div class="logo-container">
@@ -408,127 +401,58 @@
     </div>
 </header>
 
-
 <main class="vertical-slideshow">
     
-    <section class="slide">
+<section class="slide">
         <h1>The Draft Board</h1>
         <p class="subtitle">
             We are actively recruiting our inaugural strike team. Review the open positions below and help us define the future of nuclear engineering at Queen's.
-            <span class="hiring-notice">At this stage, we are exclusively looking to fill Team Lead positions to help build the foundation.
-                If interested in being a general member, please join the waitlist and stay tuned for our launch in Fall 2026.
-            </span>
         </p>
-        <div class="scroll-indicator">Scroll Down ↓</div>
-    </section>
-
-    <section class="slide">
-        <h1>Engineering Sub-Teams</h1>
-        <p class="subtitle">Executing the physical build and architecture of our pilot projects.</p>
         
-        <div class="roster-grid grid-4">
-            <div class="role-card eng-card" data-role="Mechanical Team Lead">
-                <span class="role-tag tag-lead">Team Lead</span>
-                <h3>Mechanical</h3>
-                <p class="role-intro">As the Mechanical lead, you will manage the physical architecture and are expected to oversee:</p>
-                <ul>
-                    <li>CAD Design</li>
-                    <li>Manufacturing and Prototyping</li>
-                    <li>Thermal and structural considerations</li>
-                    <li>Integration with electronics</li>
-                </ul>
-            </div>
-
-            <div class="role-card eng-card" data-role="Electrical Team Lead">
-                <span class="role-tag tag-lead">Team Lead</span>
-                <h3>Electrical</h3>
-                <p class="role-intro">As the Electrical lead, you will drive the hardware development and are expected to oversee:</p>
-                <ul>
-                    <li>Circuit design and custom PCB development</li>
-                    <li>Sensor integration and calibration</li>
-                    <li>Electronics testing and debugging</li>
-                </ul>
-            </div>
-
-            <div class="role-card eng-card" data-role="Computer Team Lead">
-                <span class="role-tag tag-lead">Team Lead</span>
-                <h3>Computer</h3>
-                <p class="role-intro">As the Computer lead, you will guide our software stack and are expected to oversee:</p>
-                <ul>
-                    <li>Firmware and device communication</li>
-                    <li>Mobile app / UI/UX development</li>
-                    <li>Software architecture</li>
-                    <li>Cross-team integration support</li>
-                </ul>
-            </div>
-
-            <div class="role-card waitlist-card" data-role="Eng General Waitlist">
-                <span class="role-tag tag-waitlist">Waitlist</span>
-                <h3>General Member</h3>
-                <p>While we are not taking in general members right now, you can join the waitlist for our launch in Fall 2026 to help build the prototype.</p>
-            </div>
+        <div class="update-notice">
+            <strong>System Update:</strong> We have recently streamlined our application categories. If you have already applied through a previous form or via email, we have safely received your application. <strong>There is no need to re-apply.</strong>
         </div>
+
+        <div class="scroll-indicator" id="scroll-down-btn">Scroll Down ↓</div>
     </section>
-
     <section class="slide">
-        <h1>Research Sub-Team</h1>
-        <p class="subtitle">Driving the theoretical foundation and pushing the boundaries of our capabilities.</p>
-        
-        <div class="roster-grid grid-2">
-            <div class="role-card res-card" data-role="Research Team Lead">
-                <span class="role-tag tag-lead">Team Lead</span>
-                <h3>Research</h3>
-                <p class="role-intro">As the Research lead, you will guide our scientific direction and are expected to oversee:</p>
-                <ul>
-                    <li>Nuclear theory and background research</li>
-                    <li>Detector physics and modeling</li>
-                    <li>Simulation and analysis work</li>
-                    <li>Supports engineering decisions with science</li>
-                </ul>
-            </div>
-
-            <div class="role-card waitlist-card" data-role="Research General Waitlist">
-                <span class="role-tag tag-waitlist">Waitlist</span>
-                <h3>General Member</h3>
-                <p>While we are not taking in general members right now, you can join the waitlist for our launch in Fall 2026 to assist with simulations and modeling.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="slide">
-        <h1>Operations Sub-Teams</h1>
-        <p class="subtitle">Securing the funding, brand, and logistical support necessary for our success.</p>
+        <h1>Join the Team</h1>
+        <p class="subtitle">Build the foundation of Queen's Nuclear Engineering Team (QNET) and help shape the future of applied nuclear engineering.</p>
+        <p class="hiring-notice">We are currently hiring for the following roles:</p>
         
         <div class="roster-grid grid-3">
-            <div class="role-card ops-card" data-role="Finance Team Lead">
-                <span class="role-tag tag-lead">Team Lead</span>
-                <h3>Finance</h3>
-                <p class="role-intro">As the Finance lead, you will secure our funding runway and are expected to oversee:</p>
+            
+            <div class="role-card stem-card" data-role="STEM Lead">
+                <span class="role-tag tag-lead">Founding Team</span>
+                <h3>STEM Leads</h3>
+                <p class="role-intro">As a STEM lead, you will guide the technical execution or scientific direction of QNET. You are expected to oversee:</p>
                 <ul>
-                    <li>Budget planning</li>
-                    <li>Grant and sponsorship outreach</li>
-                    <li>Expense tracking</li>
-                    <li>Work with EngSoc for funding</li>
+                    <li>CAD Design & Hardware Manufacturing</li>
+                    <li>Custom PCB & Electronics Integration</li>
+                    <li>UI/UX & Firmware Development</li>
+                    <li>Nuclear Theory & Simulation Modeling </li>
                 </ul>
             </div>
 
-            <div class="role-card ops-card" data-role="Marketing Team Lead">
-                <span class="role-tag tag-lead">Team Lead</span>
-                <h3>Marketing</h3>
-                <p class="role-intro">As the Marketing lead, you will build our public presence and are expected to oversee:</p>
+            <div class="role-card ops-card" data-role="Operations Lead">
+                <span class="role-tag tag-lead">Founding Team</span>
+                <h3>Operations Leads</h3>
+                <p class="role-intro">As an Operations lead, you will secure the funding runway and build the public presence of the team. You are expected to oversee:</p>
                 <ul>
-                    <li>Website and Branding</li>
-                    <li>Social Media Content</li>
-                    <li>Recruitment materials</li>
-                    <li>Event promotion</li>
+                    <li>Budget Planning & Expense Tracking</li>
+                    <li>Grants, Sponsorships & EngSoc Funding</li>
+                    <li>Website, Branding & Social Media</li>
+                    <li>Recruitment & Event Promotion</li>
                 </ul>
             </div>
 
-            <div class="role-card waitlist-card" data-role="Operations General Waitlist">
+            <div class="role-card gen-card" data-role="General Member">
                 <span class="role-tag tag-waitlist">Waitlist</span>
                 <h3>General Member</h3>
-                <p>While we are not taking in general members right now, you can join the waitlist for our launch in Fall 2026 to help run logistics and outreach.</p>
+                <p class="role-intro">Not looking for a foundational executive role? Join the technical or operational roster.</p>
+                <p class="bottom-text">While we are not taking in general members right now, you can join the waitlist for our official launch in Fall 2026 to help build the prototype.</p>
             </div>
+
         </div>
     </section>
 
@@ -561,6 +485,26 @@
 
             <h2 class="modal-title">Apply to QNET</h2>
 
+            <div class="form-group" id="interest-group" style="display: none;">
+                <label id="interest-label">I'm interested in... *</label>
+                <select name="Primary Interest" id="interest-select" class="form-control"></select>
+            </div>
+
+            <div class="form-group" id="sub-interest-group" style="display: none;">
+                <label id="sub-interest-label">Specific Focus *</label>
+                <select name="Secondary Interest" id="sub-interest-select" class="form-control"></select>
+            </div>
+
+            <div class="form-group" id="eng-pref-group" style="display: none;">
+                <label>Engineering Sub-Team *</label>
+                <select name="Engineering Preference" id="eng-pref-select" class="form-control">
+                    <option value="" disabled selected>Select a sub-team...</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Computer Engineering">Computer Engineering</option>
+                    <option value="Flexible / No Preference">None of these are required</option>
+                </select>
+            </div>
             <div class="form-group">
                 <label>Full Name *</label>
                 <input type="text" name="Name" class="form-control" required placeholder="Full Name">
@@ -618,16 +562,22 @@
 </div>
 
 <script>
-    (function setRandomCursor() {
-        const queensColors = ['%23002552', '%23fabc0f', '%23b90e32'];
+    // Bulletproof Base64 Cursor Generator
+    try {
+        const queensColors = ['#002552', '#fabc0f', '#b90e32'];
         const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
+        const svg1 = '<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="' + randomColor + '"/></svg>';
+        const svg2 = '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="' + randomColor + '" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="' + randomColor + '"/></svg>';
+        
         const cursorStyle = document.createElement('style');
         cursorStyle.innerHTML = `
-            * { cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${randomColor}"/></svg>') 6 6, auto; }
-            a, button, .btn, .logo-link, .role-card, select, input, .close-btn { cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important; }
+            * { cursor: url('data:image/svg+xml;base64,${btoa(svg1)}') 6 6, auto !important; }
+            a, button, .btn, .logo-link, .role-card, select, input, .close-btn, .scroll-indicator { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 8 8, pointer !important; }
         `;
         document.head.appendChild(cursorStyle);
-    })();
+    } catch (e) {
+        console.error("Custom cursor failed to load.", e);
+    }
 
     const modal = document.getElementById('apply-modal');
     const modalContent = document.querySelector('.modal-content');
@@ -640,9 +590,18 @@
     const form = document.getElementById('application-form');
     const successMessage = document.getElementById('success-message');
 
-    // Back to top functionality
-    const backToTopBtn = document.getElementById('back-to-top');
+    // Dynamic Form Elements
+    const interestGroup = document.getElementById('interest-group');
+    const interestSelect = document.getElementById('interest-select');
+    const subInterestGroup = document.getElementById('sub-interest-group');
+    const subInterestSelect = document.getElementById('sub-interest-select');
+    const engPrefGroup = document.getElementById('eng-pref-group');
+    const engPrefSelect = document.getElementById('eng-pref-select');
+
+    // Scroll Logic
     const slideshowContainer = document.querySelector('.vertical-slideshow');
+    const backToTopBtn = document.getElementById('back-to-top');
+    const scrollDownBtn = document.getElementById('scroll-down-btn');
 
     slideshowContainer.addEventListener('scroll', () => {
         if (slideshowContainer.scrollTop > window.innerHeight * 0.5) {
@@ -653,18 +612,91 @@
     });
 
     backToTopBtn.addEventListener('click', () => {
-        slideshowContainer.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        slideshowContainer.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    if (scrollDownBtn) {
+        scrollDownBtn.addEventListener('click', () => {
+            slideshowContainer.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+        });
+    }
+
+    // Modal Interaction & Cascading Dropdowns
     roleCards.forEach(card => {
         card.addEventListener('click', () => {
-            hiddenRoleInput.value = card.getAttribute('data-role');
+            const role = card.getAttribute('data-role');
+            hiddenRoleInput.value = role;
+            
+            // Reset fields
+            interestGroup.style.display = 'none';
+            subInterestGroup.style.display = 'none';
+            engPrefGroup.style.display = 'none';
+            interestSelect.innerHTML = '';
+            subInterestSelect.innerHTML = '';
+            interestSelect.removeAttribute('required');
+            subInterestSelect.removeAttribute('required');
+            engPrefSelect.removeAttribute('required');
+            engPrefSelect.value = '';
+
+            // Populate Top Level
+            if (role === 'STEM Lead') {
+                interestGroup.style.display = 'block';
+                interestSelect.setAttribute('required', 'true');
+                interestSelect.innerHTML = '<option value="" disabled selected>Select an option...</option><option value="Engineering">Engineering</option><option value="Research">Research</option>';
+            } else if (role === 'Operations Lead') {
+                interestGroup.style.display = 'block';
+                interestSelect.setAttribute('required', 'true');
+                interestSelect.innerHTML = '<option value="" disabled selected>Select an option...</option><option value="Marketing">Marketing</option><option value="Finance">Finance</option>';
+            } else if (role === 'General Member') {
+                interestGroup.style.display = 'block';
+                interestSelect.setAttribute('required', 'true');
+                interestSelect.innerHTML = '<option value="" disabled selected>Select an option...</option><option value="STEM">STEM</option><option value="Operations">Operations</option>';
+            }
+
             modal.style.display = 'flex';
             setTimeout(() => { modal.style.opacity = '1'; modalContent.style.transform = 'translateY(0)'; }, 10);
         });
+    });
+
+    interestSelect.addEventListener('change', (e) => {
+        const role = hiddenRoleInput.value;
+        const val = e.target.value;
+
+        subInterestGroup.style.display = 'none';
+        subInterestSelect.innerHTML = '';
+        subInterestSelect.removeAttribute('required');
+        engPrefGroup.style.display = 'none';
+        engPrefSelect.removeAttribute('required');
+        engPrefSelect.value = '';
+
+        if (role === 'STEM Lead' && val === 'Engineering') {
+            engPrefGroup.style.display = 'block';
+            engPrefSelect.setAttribute('required', 'true');
+        } else if (role === 'General Member') {
+            if (val === 'STEM') {
+                subInterestGroup.style.display = 'block';
+                subInterestSelect.setAttribute('required', 'true');
+                subInterestSelect.innerHTML = '<option value="" disabled selected>Select an option...</option><option value="Engineering">Engineering</option><option value="Research">Research</option>';
+            } else if (val === 'Operations') {
+                subInterestGroup.style.display = 'block';
+                subInterestSelect.setAttribute('required', 'true');
+                subInterestSelect.innerHTML = '<option value="" disabled selected>Select an option...</option><option value="Marketing">Marketing</option><option value="Finance">Finance</option>';
+            }
+        }
+    });
+
+    subInterestSelect.addEventListener('change', (e) => {
+        const role = hiddenRoleInput.value;
+        const val = e.target.value;
+
+        engPrefGroup.style.display = 'none';
+        engPrefSelect.removeAttribute('required');
+        engPrefSelect.value = '';
+
+        if (role === 'General Member' && val === 'Engineering') {
+            engPrefGroup.style.display = 'block';
+            engPrefSelect.setAttribute('required', 'true');
+        }
     });
 
     function closeModal() {
@@ -692,11 +724,21 @@
         submitBtn.innerText = 'Sending...';
         fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) })
         .then(response => {
-            if (response.status == 200) {
+            if (response.ok) {
                 form.style.display = 'none';
                 successMessage.style.display = 'block';
-                setTimeout(() => { closeModal(); }, 4000);
+                setTimeout(() => { 
+                    closeModal(); 
+                    form.reset();
+                    form.style.display = 'block';
+                    successMessage.style.display = 'none';
+                    submitBtn.innerText = 'Submit Application';
+                }, 4000);
+            } else {
+                submitBtn.innerText = 'Error. Try Again.';
             }
+        }).catch(() => {
+            submitBtn.innerText = 'Network Error.';
         });
     });
 </script>

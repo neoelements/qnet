@@ -51,10 +51,12 @@
             pointer-events: none; /* Lets you click the background through the header */
         }
 
-        .header-side {
-            flex: 1;
-            display: flex;
-            pointer-events: none;
+  .header-side { 
+            flex: 1; 
+            display: flex; 
+            align-items: center;
+            pointer-events: none; 
+            gap: 2.5rem; /* This is the new part that spaces the links */
         }
 
         /* Desktop Spacing */
@@ -98,6 +100,7 @@
             /* Pushes links to the far edges of the screen */
             .header-side.left { padding-right: 0; justify-content: flex-start; }
             .header-side.right { padding-left: 0; justify-content: flex-end; }
+            .header-side { gap: 1.25rem; } /* Reduces gap between links on mobile */
             
             .nav-link {
                 font-size: 0.75rem; 
@@ -325,6 +328,7 @@
 <header class="site-header">
     <div class="header-side left">
         <a href="/about" class="nav-link">About</a>
+        <a href="/teams" class="nav-link">Teams</a>
     </div>
     
     <div class="logo-container">
