@@ -438,7 +438,7 @@
     <section class="slide slide-info-night">
     <h1>QNET Information Night</h1>
     <p>March 5, 2026 &nbsp;|&nbsp; 6:30 PM - 7:30 PM &nbsp;|&nbsp; JDUC 229</p>
-    <a href="#" id="rsvp-btn" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'Index - RSVP Click'});">RSVP Now</a>
+    <a href="#" id="rsvp-btn" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'Index - RSVP Click'});">Express interest</a>
     <div class="mobile-swipe-indicator">Swipe <span>→</span></div>
 </section>
 
@@ -477,13 +477,14 @@
 </div>
 <div class="modal-overlay" id="rsvp-modal" style="display: none;">
     <div class="modal-content">
-        <span class="close-btn" id="close-rsvp-modal" onclick="gtag('event', 'button_click', {'button_name': 'Modal - Close RSVP'});">&times;</span>
+        <span class="close-btn" id="close-rsvp-modal" onclick="gtag('event', 'button_click', {'button_name': 'Modal - Close Interest Form'});">&times;</span>
         
         <form id="rsvp-form" action="https://api.web3forms.com/submit" method="POST">
             <input type="hidden" name="access_key" value="7ed0b3b0-b8ea-4d3f-bd16-012b3028b8d0">
-            <input type="hidden" name="subject" value="New RSVP for QNET Info Night!">
-            <h2 class="modal-title">RSVP for Info Night</h2>
-            <p style="margin-bottom: 20px; color: #ccc;">March 5, 2026 • 6:30 PM - 7:30 PM • JDUC 229</p>
+            <input type="hidden" name="subject" value="New QNET Interest Form Submission">
+            
+            <h2 class="modal-title">Join the Interest List</h2>
+            <p style="margin-bottom: 20px; color: #ccc;">Stay updated on our progress and upcoming events.</p>
 
             <div class="form-group">
                 <label>Full Name *</label>
@@ -495,11 +496,29 @@
                 <input type="email" name="Email" class="form-control" required placeholder="netid@queensu.ca">
             </div>
 
-            <button type="submit" class="submit-btn" onclick="gtag('event', 'button_click', {'button_name': 'Form - Submit RSVP Click'});">Confirm RSVP</button>
+            <div class="form-group">
+                <label>Primary Area of Interest</label>
+                <select name="Interest_Area" class="form-control">
+                    <option value="General">General Interest</option>
+                    <option value="Mechanical">Mechanical & Vacuum Systems</option>
+                    <option value="Electrical">Electrical & High Voltage</option>
+                    <option value="Nuclear/Physics">Nuclear Physics & Simulation</option>
+                    <option value="Business/Admin">Logistics & Marketing</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="display: flex; align-items: flex-start; gap: 10px; margin-top: 15px;">
+                <input type="checkbox" name="Attending_Info_Night" id="attending" style="width: 18px; height: 18px; margin-top: 2px;">
+                <label for="attending" style="font-size: 0.85rem; cursor: pointer;">
+                    I plan to attend the Info Night on March 5th (JDUC 229 at 18:30)
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn" onclick="gtag('event', 'button_click', {'button_name': 'Form - Submit Interest Click'});">Submit Interest</button>
         </form>
 
         <div id="rsvp-success-message" style="display: none;">
-            See you there! <br><span class="success-accent">Your spot is saved.</span>
+            Thanks for your interest! <br><span class="success-accent">We'll be in touch soon.</span>
         </div>
     </div>
 </div>
