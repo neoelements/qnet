@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QNET | Projects</title>
+    <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8J80X6N4DV');
+    </script>
+    <style>
+        @font-face {
+            font-family: 'Leelawadee UI';
+            src: url('assets/leelawadee.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            overflow: hidden; 
+            background-color: #1a1a1a; 
+            color: #f0f0f0; 
+        }
+
+        /* Fixed Header & Logo */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+            pointer-events: none; 
+        }
+
+        .header-side { 
+            flex: 1; 
+            display: flex; 
+            align-items: center;
+            pointer-events: none; 
+            gap: 2.5rem; 
+        }
+
+        .header-side.left { justify-content: flex-end; padding-right: 8rem; }
+        .header-side.right { justify-content: flex-start; padding-left: 8rem; }
+
+        .nav-link {
+            pointer-events: auto;
+            text-decoration: none;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover { color: #ffffff; }
+        .logo-container { flex: 0 0 auto; pointer-events: auto; }
+        .logo-link { text-decoration: none; }
+        
+        .logo-img {
+            height: 90px; 
+            width: auto;
+            display: block; 
+            filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.3)); 
+            transition: height 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .site-header { padding: 1rem 1.5rem; }
+            .header-side.left { padding-right: 0; justify-content: flex-start; }
+            .header-side.right { padding-left: 0; justify-content: flex-end; }
+            .header-side { gap: 1.25rem; } 
+            .nav-link { font-size: 0.75rem; letter-spacing: 0.1em; }
+            .logo-img { height: 55px; }
+        }
+
+        /* VERTICAL Slideshow Container */
+        .slideshow-container {
+            display: flex;
+            flex-direction: column; 
+            width: 100vw;
+            height: 100vh;
+            overflow-y: scroll; 
+            overflow-x: hidden;
+            
+            /* Native CSS Snapping */
+            scroll-snap-type: y mandatory; 
+            scroll-behavior: smooth;
+            position: relative;
+            
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+        }
+
+        .slideshow-container::-webkit-scrollbar { display: none; }
+
+        /* The Individual Slides */
+        .slide {
+            flex: 0 0 100vh; 
+            width: 100vw; 
+            height: 100svh;
+            scroll-snap-align: start; 
+            scroll-snap-stop: always; 
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .slide h1 {
+            margin-top: 120px; 
+            font-size: 4.5rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: #a0a0a0; 
+            max-width: 700px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .highlight-link {
+            color: #fabc0f;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .highlight-link:hover { color: #ffffff; }
+
+        .slide-1 { background-color: #1e1e1e; }
+        .slide-2 { background-color: #242424; }
+        .slide-3 { background-color: #2a2a2a; }
+        .slide-4 { background-color: #1e1e1e; }
+        .slide-5 { background-color: #242424; }
+
+        .btn {
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #f0f0f0;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: transparent;
+            border: 1px solid #555; 
+            border-radius: 50px; 
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            border-color: #b90e32; 
+            background-color: rgba(185, 14, 50, 0.2);
+            color: #ffffff;
+        }
+
+        /* Down Arrow Indicator */
+        .down-indicator {
+            position: absolute;
+            bottom: 3.5rem;
+            color: #888;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .down-indicator:hover { color: #ffffff; }
+        .down-indicator span {
+            font-size: 1.5rem;
+            animation: bounceDown 1.5s infinite ease-in-out;
+        }
+
+        @keyframes bounceDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* --- PROJECT SHOWCASE & INTERACTIVE TIMELINE --- */
+        .project-showcase {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            width: 100%;
+            max-width: 1100px;
+            gap: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid #333;
+        }
+
+        /* Left Side: Image & Static Info */
+        .project-static {
+            flex: 1;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-static img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            display: block;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .project-static h3 {
+            font-size: 1.6rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .project-static p {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* Right Side: Interactive Teams */
+        .project-interactive {
+            flex: 1.2;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .vertical-nodes {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .node-line {
+            position: absolute;
+            top: 15px;
+            bottom: 15px;
+            left: 17px; /* Centers the 4px line behind the 38px nodes */
+            width: 4px;
+            background: #444;
+            z-index: 1;
+            border-radius: 2px;
+        }
+
+        .team-node-btn {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .team-node-btn.active, .team-node-btn:hover {
+            opacity: 1;
+        }
+
+        .node-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 6px solid #1a1a1a; /* Matches background to create gap effect */
+            box-shadow: 0 0 0 3px #555; /* The outer grey ring */
+            transition: all 0.3s ease;
+        }
+
+        .team-node-btn.active .node-circle {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 3px #fff;
+        }
+
+        .team-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* The Changing Text Box */
+        .team-details {
+            flex: 1;
+            background: #1e1e1e;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--theme-color, #002552);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .team-details h4 {
+            font-size: 1.4rem;
+            color: var(--theme-color, #002552);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .team-details p {
+            font-size: 1.05rem;
+            color: #ccc;
+            margin-bottom: 0;
+        }
+
+        .project-note p {
+            font-size: 0.75rem; 
+            color: #888;       /* Dimmed white/grey */
+            margin-top: -.25rem; 
+            margin-bottom: 1rem;
+            font-style: italic;
+            line-height: 1.2;
+        }
+
+        /* Responsive Fixes */
+        @media (max-width: 768px) {
+            .slide h1 { margin-top: 100px; font-size: 2.8rem; }
+            p { font-size: 1.1rem; margin-bottom: 2rem; }
+            
+            .project-showcase {
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 2rem;
+            }
+            .project-static img { margin: 0 auto 1.5rem auto; max-width: 100%; }
+            .project-static { text-align: center; }
+            
+            .project-interactive {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .vertical-nodes {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            .node-line {
+                top: 17px; left: 15px; right: 15px; bottom: auto;
+                height: 4px; width: auto;
+            }
+            .team-node-btn { flex-direction: column; gap: 0.5rem; }
+            .team-label { font-size: 0.8rem; }
+        }
+
+        /* FIXED BOTTOM LEFT FOOTER */
+        .fixed-footer {
+            position: fixed; bottom: 2.5rem; left: 2.5rem;
+            display: flex; align-items: center; gap: 1.25rem; z-index: 100;
+        }
+        .social-link { display: flex; align-items: center; justify-content: center; }
+        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.3s ease; }
+        .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); } 
+        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); } 
+        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); } 
+
+        @media (max-width: 768px) {
+            .fixed-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-side left">
+        <a href="/about" class="nav-link">About</a>
+        <a href="/teams" class="nav-link">Teams</a>
+    </div>
+    <div class="logo-container">
+        <a href="/" class="logo-link">
+            <img src="assets/QNET outline white.svg" alt="QNET Logo" class="logo-img">
+        </a>
+    </div>
+    <div class="header-side right">
+        <a href="/projects" class="nav-link" onclick="gtag('event', 'button_click', {'button_name': 'Header - Projects'});">Projects</a>
+        <a href="/join" class="nav-link">Join</a>
+    </div>
+</header>
+
+<div class="slideshow-container">
+    
+    <section class="slide slide-1">
+        <h1>Projects</h1>
+        <p>As we are currently in the <a href="/about" class="highlight-link">Foundation Phase</a>, there is no set project yet. We are hiring executives to help conceptualize and architect our first major build this summer, with physical assembly starting in September.</p>
+        <a href="/join" class="btn">Join the Exec Team to shape QNET's first project</a>
+        
+        <div id="next-slide-btn" class="down-indicator">
+            What to expect <span>↓</span>
+        </div>
+    </section>
+
+    <section class="slide slide-2">
+        <h2>Project Philosophy</h2>
+        <p>Before a build is approved, every QNET project must satisfy three core pillars to ensure it meets our standard.</p>
+        <div style="text-align: left; max-width: 650px; margin: 0 auto;">
+            <p><strong>1. Teaches nuclear engineering concepts:</strong> Providing members with tangible, hands-on experience in complex radiation technology.</p>
+            <p><strong>2. Involves multiple disciplines:</strong> A required synthesis of mechanical hardware, low-level electrical circuitry, and software integration.</p>
+            <p><strong>3. Achievable within timeline and resources:</strong> Scoped appropriately to be completed safely and effectively by a student team.</p>
+        </div>
+    </section>
+
+    <section class="slide slide-3">
+        <h2>Example Project 1</h2>
+        <div class="project-showcase">
+            <div class="project-static">
+                <img src="assets/geiger.png" alt="QNET Geiger Counter Prototype">
+                <div class="project-note">
+                    <p>Note: The image is generated with Nano Banana 2 for visualization purposes.</p>
+                </div>
+                <h3>Geiger Counter Prototype</h3>
+                <p>A compact, portable radiation detection system designed for real-time environmental monitoring.</p>
+            </div>
+            <div class="project-interactive">
+                <div class="vertical-nodes">
+                    <div class="node-line"></div>
+                    <button class="team-node-btn active" data-project="geiger" data-team="mech" data-color="#002552">
+                        <div class="node-circle" style="background-color: #002552;"></div>
+                        <span class="team-label">Mech</span>
+                    </button>
+                    <button class="team-node-btn" data-project="geiger" data-team="elec" data-color="#fabc0f">
+                        <div class="node-circle" style="background-color: #fabc0f;"></div>
+                        <span class="team-label">Elec</span>
+                    </button>
+                    <button class="team-node-btn" data-project="geiger" data-team="comp" data-color="#b90e32">
+                        <div class="node-circle" style="background-color: #b90e32;"></div>
+                        <span class="team-label">Comp</span>
+                    </button>
+                    <button class="team-node-btn" data-project="geiger" data-team="research" data-color="#ffffff">
+                        <div class="node-circle" style="background-color: #ffffff;"></div>
+                        <span class="team-label">Research</span>
+                    </button>
+                </div>
+                <div class="team-details" id="details-geiger" style="--theme-color: #002552;">
+                    <h4 id="title-geiger">Mechanical</h4>
+                    <p id="desc-geiger">Designing the ergonomic chassis and lead-shielding components using advanced CAD modeling and stress simulation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide slide-4">
+        <h2>Example Project 2</h2>
+        <div class="project-showcase">
+            <div class="project-static">
+                <img src="assets/cc.png" alt="QNET Cloud Chamber Prototype">
+                <div class="project-note">
+                    <p>Note: The image is generated with Nano Banana 2 for visualization purposes.</p>
+                </div>
+                <h3>Cloud Chamber</h3>
+                <p>A continuously active Peltier-cooled cloud chamber that makes background ionizing radiation visible to the naked eye.</p>
+            </div>
+            <div class="project-interactive">
+                <div class="vertical-nodes">
+                    <div class="node-line"></div>
+                    <button class="team-node-btn active" data-project="cloud" data-team="mech" data-color="#002552">
+                        <div class="node-circle" style="background-color: #002552;"></div>
+                        <span class="team-label">Mech</span>
+                    </button>
+                    <button class="team-node-btn" data-project="cloud" data-team="elec" data-color="#fabc0f">
+                        <div class="node-circle" style="background-color: #fabc0f;"></div>
+                        <span class="team-label">Elec</span>
+                    </button>
+                    <button class="team-node-btn" data-project="cloud" data-team="comp" data-color="#b90e32">
+                        <div class="node-circle" style="background-color: #b90e32;"></div>
+                        <span class="team-label">Comp</span>
+                    </button>
+                    <button class="team-node-btn" data-project="cloud" data-team="research" data-color="#ffffff">
+                        <div class="node-circle" style="background-color: #ffffff;"></div>
+                        <span class="team-label">Research</span>
+                    </button>
+                </div>
+                <div class="team-details" id="details-cloud" style="--theme-color: #002552;">
+                    <h4 id="title-cloud">Mechanical</h4>
+                    <p id="desc-cloud">Precision casing, thermal insulation, and fluid housing to ensure an optimal viewing window for the chamber.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide slide-5">
+        <h2>Example Project 3</h2>
+        <div class="project-showcase">
+            <div class="project-static">
+                <img src="assets/gamma.png" alt="QNET Gamma Spectrometer Prototype">
+                <div class="project-note">
+                    <p>Note: The image is generated with Nano Banana 2 for visualization purposes.</p>
+                </div>
+                <h3>Gamma Spectrometer</h3>
+                <p>A scintillation detector setup utilizing a photomultiplier tube to identify specific radioactive isotopes.</p>
+            </div>
+            <div class="project-interactive">
+                <div class="vertical-nodes">
+                    <div class="node-line"></div>
+                    <button class="team-node-btn active" data-project="gamma" data-team="mech" data-color="#002552">
+                        <div class="node-circle" style="background-color: #002552;"></div>
+                        <span class="team-label">Mech</span>
+                    </button>
+                    <button class="team-node-btn" data-project="gamma" data-team="elec" data-color="#fabc0f">
+                        <div class="node-circle" style="background-color: #fabc0f;"></div>
+                        <span class="team-label">Elec</span>
+                    </button>
+                    <button class="team-node-btn" data-project="gamma" data-team="comp" data-color="#b90e32">
+                        <div class="node-circle" style="background-color: #b90e32;"></div>
+                        <span class="team-label">Comp</span>
+                    </button>
+                    <button class="team-node-btn" data-project="gamma" data-team="research" data-color="#ffffff">
+                        <div class="node-circle" style="background-color: #ffffff;"></div>
+                        <span class="team-label">Research</span>
+                    </button>
+                </div>
+                <div class="team-details" id="details-gamma" style="--theme-color: #002552;">
+                    <h4 id="title-gamma">Mechanical</h4>
+                    <p id="desc-gamma">Engineering a completely light-tight enclosure for the sensitive photomultiplier tube and structural mounts for lead shielding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<div class="fixed-footer">
+    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://github.com/qnuclear" target="_blank" class="social-link">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+</div>
+
+<script>
+    // Random Custom Cursor Script
+    (function setRandomCursor() {
+        const queensColors = ['%23002552', '%23fabc0f', '%23b90e32'];
+        const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
+        const cursorStyle = document.createElement('style');
+        cursorStyle.innerHTML = `
+            * { cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${randomColor}"/></svg>') 6 6, auto; }
+            a, button, .btn, .logo-link, .down-indicator { cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important; }
+        `;
+        document.head.appendChild(cursorStyle);
+    })();
+
+    // "What to expect" down arrow logic
+    document.getElementById('next-slide-btn').addEventListener('click', (evt) => {
+        evt.preventDefault(); 
+        const container = document.querySelector('.slideshow-container');
+        container.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    });
+
+    // Interactive Team Timeline Logic
+    const teamContent = {
+        geiger: {
+            mech: { title: "Mechanical", desc: "Designing the ergonomic chassis and lead-shielding components using advanced CAD modeling and stress simulation." },
+            elec: { title: "Electrical", desc: "Developing the custom PCB and high-voltage circuitry required to power the Geiger-Müller tube and integrate power management." },
+            comp: { title: "Software & Comp", desc: "App development and IoT integration. Your phone will sync with the device to display real-time radiation exposure and map high-activity zones via GPS." },
+            research: { title: "Research", desc: "Sourcing safe isotopes for testing, calibrating sensor accuracy, and drafting rigorous safety documentation to meet protocols." }
+        },
+        cloud: {
+            mech: { title: "Mechanical", desc: "Precision casing, thermal insulation, and fluid housing to ensure an optimal viewing window for the chamber." },
+            elec: { title: "Electrical", desc: "Power delivery systems for the Peltier coolers and high-visibility LED arrays to illuminate radiation tracks." },
+            comp: { title: "Software & Comp", desc: "Integrating camera vision software to automatically detect, classify, and log specific types of particle tracks in real-time." },
+            research: { title: "Research", desc: "Sourcing optimal alpha and beta emitting samples and researching the fluid dynamics of isopropyl alcohol vapor." }
+        },
+        gamma: {
+            mech: { title: "Mechanical", desc: "Engineering a completely light-tight enclosure for the sensitive photomultiplier tube and structural mounts for lead shielding." },
+            elec: { title: "Electrical", desc: "Designing low-noise signal amplification circuitry to capture the minuscule electrical pulses from the scintillation crystal." },
+            comp: { title: "Software & Comp", desc: "Creating custom signal processing algorithms and a user interface to accurately plot the energy spectrum of detected radiation." },
+            research: { title: "Research", desc: "Mapping energy spectrums of various safe sources to allow the software to instantly identify specific radioactive isotopes." }
+        }
+    };
+
+    document.querySelectorAll('.team-node-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const project = this.getAttribute('data-project');
+            const team = this.getAttribute('data-team');
+            const color = this.getAttribute('data-color');
+            
+            // Remove active from peers in the same project
+            const container = this.closest('.vertical-nodes');
+            container.querySelectorAll('.team-node-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            // Update content
+            const detailsBox = document.getElementById(`details-${project}`);
+            const titleEl = document.getElementById(`title-${project}`);
+            const descEl = document.getElementById(`desc-${project}`);
+            
+            const content = teamContent[project][team];
+            titleEl.textContent = content.title;
+            descEl.textContent = content.desc;
+            
+            // Update color accents
+            detailsBox.style.setProperty('--theme-color', color);
+            titleEl.style.color = color === '#ffffff' ? '#ffffff' : color;
+        });
+    });
+</script>
+
+</body>
+</html>
